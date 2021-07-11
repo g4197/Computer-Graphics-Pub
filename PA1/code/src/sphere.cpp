@@ -1,0 +1,52 @@
+#include "sphere.hpp"
+
+Sphere::Sphere() : center_(Vector3f::ZERO), radius_(1.0) {}
+
+Sphere::Sphere(const Vector3f &center, float radius, Material *material) : Object3D(material), center_(center), radius_(radius) {}
+
+Sphere::VectorPlace Sphere::getVectorPlace(const Vector3f &v) {
+    float distance = (v - center_).length();
+    return distance < radius_ ? kInside : 
+          (distance > radius_ ? kOutside : kOnEdge);
+}
+
+bool Sphere::setHit(Hit &h, float tmin, float t, const Vector3f &intersect_pnt, VectorPlace origin_place) {
+    if (tmin < t && t < h.getT()) {
+        Vector3f normal = (intersect_pnt - center_).normalized();
+        if (origin_place == kInside) normal = -normal;
+        h.set(t, this->material, normal);
+        return true;
+    }
+    return false;
+}
+
+bool Sphere::intersect(const Ray &r, Hit &h, float tmin) {
+    VectorPlace origin_place = getVectorPlace(r.getOrigin());
+    Vector3f origin_to_center = center_ - r.getOrigin();
+    float len_r = r.getDirection().length();
+
+    // proj_t means the dot of origin_to_center and unit r
+    // then the square_length is 1 * 1 * proj_t * proj_t
+    float proj_t = Vector3f::dot(origin_to_center, r.getDirection()) / len_r;
+    float proj_square_len = proj_t * proj_t;
+    float origin_to_center_square_len = origin_to_center.squaredLength();
+    if (origin_place != kInside && proj_t < 0) {
+        return false;
+    }
+
+    float square_dis = origin_to_center_square_len - proj_square_len;
+    float proj_intersect_square_dis = radius_ * radius_ - square_dis;
+    if (proj_intersect_square_dis < 0) {
+        return false;
+    }
+
+    float proj_intersect_dis = sqrt(proj_intersect_square_dis);
+    float t = proj_t;
+    if (origin_place == kOutside) {
+        t -= proj_intersect_dis;
+    } else {
+        t += proj_intersect_dis;
+    }
+    t /= len_r;
+    return setHit(h, tmin, t, r.pointAtParameter(t), origin_place);
+}
