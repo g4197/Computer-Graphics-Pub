@@ -1,0 +1,229 @@
+
+PerspectiveCamera {
+    center 3.6 1.2 -8.4
+    direction -1 -0.5 1.25
+    up 0 1 0
+    angle 60
+    width 3840
+    height 2160
+    focal 10
+    aperture 0.5
+}
+
+Background {
+    color 0 1 1 
+}
+
+Materials {
+  numMaterials 16
+
+  Material { 
+    diffuseColor 0.75 0.75 0.75
+    texture texture/wallpaper2.bmp
+    reflectType 0
+  }
+  Material { 
+    diffuseColor 0.75 0.25 0.25 
+    reflectType 0
+  }
+  Material { 
+    diffuseColor 0.25 0.25 0.25
+    reflectType 0
+  }
+  Material { 
+    diffuseColor 0.5 0.5 0.75
+    reflectType 0
+  }
+  Material { 
+    diffuseColor 0.75 0.75 0.75
+    texture texture/floor.bmp
+    reflectType 0
+  }
+  Material { 
+    diffuseColor 0.75 0.75 0.75
+    reflectType 0
+  }
+  Material { 
+    diffuseColor 0.999 0.999 0.999
+    reflectType 1
+  }
+  Material { 
+    ambientColor 100000 100000 100000
+    diffuseColor 1 1 1
+    reflectType 0
+  }
+  Material {
+    texture texture/chair.bmp
+    reflectType 0
+  }
+  Material {
+    texture texture/desk.bmp
+    reflectType 0
+  }
+  Material {
+    texture texture/wood.bmp
+    reflectType 0
+  }
+  Material {
+    texture texture/shelf.bmp
+    diffuseColor 0.6 0.6 0.6
+    reflectType 0
+  }
+  Material { 
+    diffuseColor 0.999 0.999 0.999
+    reflectType 2
+    refractiveIndex 1.5
+  }
+  Material { 
+    diffuseColor 0.999 0.999 0.999
+    reflectType 1
+  }
+  Material { 
+    diffuseColor 0.75 0.25 0.25
+    reflectType 0
+  }
+  Material { 
+    diffuseColor 0.25 0.25 0.75
+    reflectType 0
+  }
+}
+
+Group {
+  numObjects 17
+  MaterialIndex 0
+  Plane {
+    normal 1 0 0
+    offset -10
+  }
+  MaterialIndex 1
+  Plane {
+    normal -1 0 0
+    offset -10
+  }
+  MaterialIndex 2
+  Plane {
+    normal 0 0 1
+    offset -10
+  }
+  MaterialIndex 3
+  Plane {
+    normal 0 0 -1
+    offset -10
+  }
+  MaterialIndex 4
+  Plane {
+    normal 0 1 0
+    offset -4
+  }
+  MaterialIndex 5
+  Plane {
+    normal 0 -1 0
+    offset -10
+  }
+  MaterialIndex 7
+  Sphere {
+    center 0 9.75 -0
+    radius 0.05
+  }
+  MaterialIndex 8
+  Transform {
+    Translate 0 -4 3.5
+    Scale 0.02 0.02 0.02
+    XRotate 90
+    YRotate 180
+    TriangleMesh {
+      obj_file mesh/chair.obj
+    }
+  }
+  MaterialIndex 9
+  Transform {
+    Translate 0 -3 2
+    Scale 0.02 0.02 0.02
+    YRotate 180
+    TriangleMesh {
+      obj_file mesh/desk.obj
+    }
+  }
+  MaterialIndex 10
+  Transform {
+    Scale 0.4 0.4 0.4
+    YRotate 90
+    Translate 5 -8 -7
+    TriangleMesh {
+      obj_file mesh/wood_table.obj
+    }
+  }
+  MaterialIndex 6
+  Sphere {
+    center -3.5 -2.3 -3.8
+    radius 0.5
+  }
+  MaterialIndex 11
+  Transform {
+    Translate -2.5 -3 0
+    Scale 1.5 1.5 1.5
+    YRotate -45
+    TriangleMesh {
+      obj_file mesh/shelf.obj
+    }
+  }
+  MaterialIndex 12
+  Transform {
+    Translate -2.5 -1.5 0
+    Scale 0.3 0.3 0.3
+    RevSurface {
+      profile BsplineCurve {
+        controls
+          [ 0.000000 -0.459543 0.0 ]
+          [ 0.000000 -0.459544 0.0 ]
+          [ 0.000000 -0.459545 0.0 ]
+          [ -0.351882 -0.426747 0.0 ]
+          [ -0.748656 -0.278898 0.0 ]
+          [ -1.012097 0.084005 0.0 ]
+          [ -1.064785 1.105511 0.0 ]
+          [ -0.891667 2.328629 0.0 ]
+          [ -1.029301 2.503360 0.0 ]
+          [ -1.088800 2.345600 0.0 ]
+          [ -1.278000 1.162800 0.0 ]
+          [ -1.214800 0.055200 0.0 ]
+          [ -0.915600 -0.381200 0.0 ]
+          [ -0.380400 -0.622000 0.0 ]
+          [ -0.244000 -0.968400 0.0 ]
+          [ -0.196800 -1.480000 0.0 ]
+          [ -0.228400 -2.112400 0.0 ]
+          [ -0.417200 -2.202800 0.0 ]
+          [ -0.994400 -2.262800 0.0 ]
+          [ -1.214800 -2.323200 0.0 ]
+          [ -1.199200 -2.398400 0.0 ]
+          [ -1.057600 -2.458800 0.0 ]
+          [ -0.711200 -2.458800 0.0 ]
+          [ 0.000000 -2.458800 0.0 ]
+          [ 0.000000 -2.458801 0.0 ]
+          [ 0.000000 -2.458802 0.0 ]
+      }
+    }
+  }
+  Sphere {
+    center 0 -2.5 6
+    radius 1.5
+  }
+  MaterialIndex 13
+  Sphere {
+    center -3.2 -2.3 -2
+    radius 0.5
+  }
+  MaterialIndex 14
+  Sphere {
+    center -3 -2.55 -3.1
+    radius 0.25
+  }
+  MaterialIndex 15  
+  Transform {
+    Translate 0 -2.5 1
+    Scale 4 4 4
+    TriangleMesh {
+      obj_file mesh/bunny_1k.obj
+    }
+  }
+}
+
