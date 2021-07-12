@@ -68,7 +68,7 @@ public:
         //linear combination
         Vector3f normal_dir = (dir.x() * horizontal - 
                                dir.y() * up + 
-                               dir.z() * direction).normalized(); // generate image on z=1
+                               dir.z() * direction).normalized(); // generate image on z=aperture_
         
 
 
